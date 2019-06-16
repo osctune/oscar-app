@@ -4,7 +4,6 @@
   "description": "Web app for OSCAR",
   "author": "Oscar Tunebing <tunebingo@gmail.com>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "start": "cross-env WEBPACK_DEV=true nodemon server",
     "build": "cross-env webpack --config webpack.prod.js",
