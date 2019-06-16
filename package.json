@@ -10,6 +10,10 @@
     "test": "cross-env jest --watchAll",
     "prepublish": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osctune/oscar-app.git"
+  },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
@@ -36,5 +40,9 @@
     "uuid": "^3.3.2",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/osctune/oscar-app/issues"
+  },
+  "homepage": "https://github.com/osctune/oscar-app#readme"
 }
