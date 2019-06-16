@@ -8,7 +8,8 @@
   "scripts": {
     "start": "cross-env WEBPACK_DEV=true nodemon server",
     "build": "cross-env webpack --config webpack.prod.js",
-    "test": "cross-env jest --watchAll"
+    "test": "cross-env jest --watchAll",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
