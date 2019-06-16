@@ -2,7 +2,7 @@
   "name": "@nam3/oscar-app",
   "version": "0.1.0",
   "description": "Web app for OSCAR",
-  "author": "Oscar Tunebing <tunebingo@gmail.com>",
+  "author": "Oscar Tunebing <tunebing@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "cross-env WEBPACK_DEV=true nodemon server",
@@ -18,9 +18,11 @@
     "babel-loader": "^8.0.6",
     "cross-env": "^5.2.0",
     "enzyme": "^3.10.0",
+    "express": "^4.17.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
+    "webpack-dev-middleware": "^3.7.0",
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
