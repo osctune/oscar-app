@@ -1,6 +1,8 @@
 import { createUrl } from './api';
 
 beforeAll(() => {
+    global.API_URL = 'API_URL';
+    //global.REDIRECT_URL = 'REDIRECT_URL';
     global.fetch = async () => {};
 });
 
@@ -22,7 +24,7 @@ afterEach(() => {
 describe('createUrl', () => {
     it('should call fetch once with encoded url', async () => {
         const testUrl = 'https://duckduckgo.com/   123';
-        const expectedRequestUrl = '/api/createUrl/https://duckduckgo.com/%20%20%20123';
+        const expectedRequestUrl = `${API_URL}/createUrl/https://duckduckgo.com/%20%20%20123`;
         await createUrl(testUrl);
         expect(global.fetch).toHaveBeenCalledTimes(1);
         expect(global.fetch).toHaveBeenCalledWith(expectedRequestUrl);
