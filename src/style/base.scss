@@ -1,0 +1,37 @@
+body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: $primary-color;
+    background-color: $background-color;
+    font-family: $font-stack;
+    font-size: $font-size;
+}
+
+input {
+    padding: $input-padding;
+    margin: $input-margin;
+    border-radius: $border-radius;
+    border: solid $border-color;
+    color: $primary-color;
+    background-color: $background-color;
+    font-size: $font-size;
+}
+
+input[type="text"] {
+    width: calc(100% - #{$input-margin * 2} - #{$input-padding * 2});
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0px;
+    margin: 0px;
+}
+
+h1 {
+    padding: 0px;
+    margin: 0px;
+}
