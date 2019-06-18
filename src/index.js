@@ -7,29 +7,21 @@
 // npm WARN deprecated   > import "core-js/stable";
 // npm WARN deprecated   > import "regenerator-runtime/runtime";
 
+import './style/index.scss';
+
 import 'core-js/stable'; // Polyfill.
 import 'regenerator-runtime/runtime'; // Needed for redux-saga.
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import { Provider as ReduxProvider } from 'react-redux';
 
+import createStore from './createStore';
 import App from './App';
-import reducer from './reducer';
-import saga from './saga';
 
 // Bootstrap app.
-const sagaMiddleware = createSagaMiddleware();
-
-const store = createStore(
-    reducer,
-    applyMiddleware(sagaMiddleware)
-);
-
-sagaMiddleware.run(saga);
+const store = createStore();
 
 ReactDOM.render(
     <ReduxProvider store={store}>
@@ -37,3 +29,12 @@ ReactDOM.render(
     </ReduxProvider>,
     document.getElementById('root'),
 );
+
+module.hot.accept('./App.js', () => {
+    ReactDOM.render(
+        <ReduxProvider store={store}>
+            <App />
+        </ReduxProvider>,
+        document.getElementById('root'),
+    );
+});
