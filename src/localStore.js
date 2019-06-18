@@ -3,11 +3,11 @@ const { localStorage } = window ? window : global;
 
 export const loadState = () => {
     try {
-        // Load and parse item, default to null.
-        return JSON.parse(localStorage.getItem(localStorageKey)) || null;
+        // Load and parse item, default to undefined.
+        return JSON.parse(localStorage.getItem(localStorageKey)) || undefined;
     } catch(err) {
-        // If invalid state, default to null.
-        return null;
+        // If invalid state, default to undefined.
+        return undefined;
     }
 };
 
@@ -17,7 +17,7 @@ export const saveState = (state) => {
         throw new Error('Value is required.');
     }
     // Serialize and save.
-    localStorage.setItem(localStorageKey, JSON.stringify(state));
+    localStorage.setItem(localStorageKey, JSON.stringify(state || null));
 };
 
 export const clearState = () => {

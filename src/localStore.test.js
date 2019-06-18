@@ -14,13 +14,13 @@ beforeEach(() => {
 describe('loadState', () => {
     it('should load state from localStorage', () => {
         const result = loadState();
-        expect(result).toBe(null);
+        expect(result).toBe(undefined);
         expect(localStorage.getItem).toHaveBeenCalledTimes(1);
         expect(localStorage.getItem).toHaveBeenCalledWith(localStorageKey);
     });
     it('should return null when not initialized', () => {
         const result = loadState();
-        expect(result).toBe(null);
+        expect(result).toBe(undefined);
     });
 });
 
