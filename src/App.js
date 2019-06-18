@@ -10,7 +10,7 @@ import {
 } from './constant';
 
 import { createUrl, inputUrl } from './action';
-import { getPending, getHistory, getInputUrl } from './selector';
+import { getPending, getHistory, getInputUrl, getStash } from './selector';
 
 // const statusByType = {
 //     [ACTION_CREATE_URL]: 'Pending',
@@ -26,6 +26,7 @@ const Url = ({
     createUrl,
     history,
     pending,
+    stash,
 }) => {
     const handleChangeUrl = e => {
         inputUrl(e.target.value);
@@ -45,12 +46,12 @@ const Url = ({
             <div className="control">
                 <form onSubmit={handleCreateUrl}>
                     <input type="text" value={url} onChange={handleChangeUrl} />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" disabled={url.length === 0} />
                 </form>
             </div>
             <div className="stash">
                 <h3>Stash</h3>
-                {history.filter(action => action.type === ACTION_CREATE_URL_OK).map(action => {
+                {stash.map(action => {
                     return (
                         <div className="card" key={action.id}>
                             <span>{action.id}</span>
@@ -62,26 +63,28 @@ const Url = ({
                     );
                 })}
             </div>
-            <div className="error">
-                <h3>Error</h3>
-                {history.filter(action => action.type !== ACTION_CREATE_URL_OK).slice(0, 1).map(action => {
-                    return (
-                        <div key={action.id}>
-                            <div>{action.url}</div>
-                            <div>{action.reason}</div>
-                        </div>
-                    );
-                })}
-            </div>
-            <div className="progress">
-                <h3>Progress</h3>
-                {pending.map(action => {
-                    return (
-                        <div key={action.id}>
-                            {action.url}
-                        </div>
-                    );
-                })}
+            <div className="report">
+                <div className="error">
+                    <h3>Last error</h3>
+                    {history.filter(action => action.type !== ACTION_CREATE_URL_OK).slice(0, 1).map(action => {
+                        return (
+                            <div key={action.id}>
+                                <div>{action.url}</div>
+                                <div>{action.reason}</div>
+                            </div>
+                        );
+                    })}
+                </div>
+                <div className="progress">
+                    <h3>Progress</h3>
+                    {pending.map(action => {
+                        return (
+                            <div key={action.id}>
+                                {action.url}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
@@ -92,6 +95,7 @@ const mapStateToProps = (state) => {
         url: getInputUrl(state),
         pending: getPending(state),
         history: getHistory(state),
+        stash: getStash(state),
     };
 };
 

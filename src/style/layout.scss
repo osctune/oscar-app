@@ -3,10 +3,10 @@
     grid-template-areas:
         "title stash"
         "control stash"
-        "error stash"
-        "progress stash";
-    grid-template-columns: 400px 1fr;
-    grid-template-rows: 100px 100px auto auto;
-    grid-gap: 30px;
-    padding: 13px;
+        "report stash"
+        "report stash";
+    grid-template-columns: 600px 1fr;
+    grid-template-rows: 200px 200px auto auto;
+    grid-gap: 0px;
+    padding: 17px;
 }

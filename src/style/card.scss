@@ -1,4 +1,6 @@
 .card {
+    padding: $card-padding;
+    margin: $card-margin;
     background-color: $card-background-color;
     border-radius: $border-radius;
 }

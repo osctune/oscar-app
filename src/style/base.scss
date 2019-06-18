@@ -19,11 +19,20 @@ input {
 }
 
 input[type="text"] {
-    width: calc(100% - #{$input-margin * 2} - #{$input-padding * 2});
+    width: calc(100% - #{$input-margin * 2} - #{$input-padding * 2} - #{$border-width * 2});
 }
 
 input[type="submit"] {
     cursor: pointer;
+}
+
+input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+input.invalid {
+    border-color: red;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -32,6 +41,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    padding: 0px;
-    margin: 0px;
+    margin-bottom: 13px;
+    font-size: calc($font-size, + 6);
+}
+
+h2 {
+    margin-bottom: 7px;
+    font-size: calc($font-size, + 5);
+}
+
+h3 {
+    margin-bottom: 5px;
+    font-size: calc($font-size, + 4);
 }
