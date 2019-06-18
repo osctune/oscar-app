@@ -1,5 +1,4 @@
 export const localStorageKey = 'state';
-const { localStorage } = window ? window : global;
 
 export const loadState = () => {
     try {
