@@ -49,6 +49,17 @@ describe('reducer (createUrl)', () => {
         expect(stash).toStrictEqual([createUrlResultAction]);
     });
 
+    it('should make sure stash size do not go over 10 items', () => {
+        let state;
+        for(let i = 0; i < 11; i++) {
+            const createUrlAction = createUrl({ url: `http://localhost:8080/${i}`, });
+            state = reducer(state, createUrlAction);
+            state = reducer(state, createUrlOk(createUrlAction));
+        }
+        const stash = getStash(state);
+        expect(stash.length).toBe(10);
+    });
+
     const testCreateUrlResult = (createUrlAction, createUrlResultAction) => {
         it(`should clear ${createUrlResultAction.type} actions from pending list and add them to history`, () => {
             let state = reducer(undefined, createUrlAction);
