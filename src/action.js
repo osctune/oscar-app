@@ -31,10 +31,11 @@ export const createUrlOk = ({ url, target, id }) => ({
 });
 
 // End create url flow with a FAIL.
-export const createUrlFail = ({ url, id }) => ({
+export const createUrlFail = ({ url, id, reason }) => ({
     type: ACTION_CREATE_URL_FAIL,
     id,
     url,
+    reason,
 });
 
 // Cancel a create url flow.

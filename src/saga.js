@@ -24,19 +24,32 @@ function* createUrl(action) {
             response: call(fetchCreateUrl, action.url),
             timeout: delay(10000),
         });
+
         if (timeout) {
             // Client-side timeout.
             yield put(createUrlTimeout(action));
             return;
         }
-        //  We got the url!
-        yield put(createUrlOk({
-            id: action.id,
-            url: response,
-            target: action.url,
-        }));
+        
+        // Get response text.
+        const text = yield call(response.text.bind(response));
+
+        if(response.status === 200) {
+            //  We got the url!
+            yield put(createUrlOk({
+                id: action.id,
+                url: text,
+                target: action.url,
+            }));
+        } else {
+            yield put(createUrlFail({
+                ...action,
+                reason: text,
+            }));
+        }
     } catch (err) {
         // Error.
+        console.log(err);
         yield put(createUrlFail(action));
     } finally {
         if (yield cancelled()) {
