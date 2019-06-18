@@ -1,6 +1,31 @@
 .card {
+    display: flex;
     padding: $card-padding;
     margin: $card-margin;
     background-color: $card-background-color;
     border-radius: $border-radius;
+    text-align: center;
+    user-select: none;
+    overflow: hidden;
+}
+
+.card a {
+    flex-grow: 1;
+    margin: 11px;
+    padding: 11px;
+    border-radius: 11px;
+    color: $primary-color;
+    background-color: $card-link-background-color;
+}
+
+.card a:nth-child(even) {
+    width: 70px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.card a:hover {
+    color: $primary-color;
+    background-color: $background-color;
 }

@@ -35,6 +35,14 @@ input.invalid {
     border-color: red;
 }
 
+a, a:active, a:visited {
+    color: $primary-color;
+}
+
+a:hover {
+    color: $link-hover-color;
+}
+
 h1, h2, h3, h4, h5, h6 {
     padding: 0px;
     margin: 0px;
