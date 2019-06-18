@@ -13,6 +13,7 @@ import { removeById } from './util';
 const initialState = () => ({
     url: '',
     pending: [],
+    stash: [],
     history: [],
 });
 
@@ -30,28 +31,29 @@ const reducer = (state = initialState(), action) => {
                 ...state,
                 pending: [action, ...state.pending],
             };
-        // Success, remove action from pending queue and add to ok list.
+        // Success, remove action from pending queue and add to stash and history list.
         case ACTION_CREATE_URL_OK:
             return {
                 ...state,
+                stash: [action, ...state.stash],
                 history: [action, ...state.history],
                 pending: removeById(state.pending, action),
             };
-        // Failed, remove action from pending queue and add to fail list.
+        // Failed, remove action from pending queue and add to history list.
         case ACTION_CREATE_URL_FAIL:
             return {
                 ...state,
                 history: [action, ...state.history],
                 pending: removeById(state.pending, action),
             };
-        // Canceled, remove action from pending queue.
+        // Canceled, remove action from pending queue and add to history list.
         case ACTION_CREATE_URL_CANCEL:
             return {
                 ...state,
                 history: [action, ...state.history],
                 pending: removeById(state.pending, action),
             };
-        // Timed out, remove action from pending queue and add to timeout list.
+        // Timed out, remove action from pending queue and add to history list.
         case ACTION_CREATE_URL_TIMEOUT:
             return {
                 ...state,

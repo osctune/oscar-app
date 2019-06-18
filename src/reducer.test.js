@@ -13,6 +13,7 @@ import {
     getInputUrl,
     getPending,
     getHistory,
+    getStash,
 } from './selector';
 
 describe('reducer (inputUrl)', () => {
@@ -36,6 +37,16 @@ describe('reducer (createUrl)', () => {
         const state = reducer(undefined, createUrlAction);
         const pending = getPending(state);
         expect(pending).toStrictEqual([createUrlAction]);
+    });
+
+    it('should store ok createUrl actions in stash', () => {
+        const createUrlResultAction = createUrlOk(createUrlAction);
+        let state = reducer(undefined, createUrlAction);
+        state = reducer(state, createUrlResultAction);
+        const pending = getPending(state);
+        const stash = getStash(state);
+        expect(pending).toStrictEqual([]);
+        expect(stash).toStrictEqual([createUrlResultAction]);
     });
 
     const testCreateUrlResult = (createUrlAction, createUrlResultAction) => {
