@@ -8,8 +8,7 @@
     "start": "cross-env API_URL=\"http://localhost:1336\" REDIRECT_URL=\"http://localhost:1337\" webpack-dev-server --config webpack.dev.js --open",
     "build": "cross-env webpack --config webpack.prod.js",
     "now-build": "cross-env webpack --config webpack.prod.js",
-    "test": "cross-env jest --watchAll",
-    "prepublish": "npm run build"
+    "test": "cross-env jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -47,7 +46,8 @@
     "regenerator-runtime": "^0.13.2",
     "uuid": "^3.3.2",
     "webpack": "^4.34.0",
-    "webpack-cli": "^3.3.4"
+    "webpack-cli": "^3.3.4",
+    "@nam3/oscar-util": "git+https://git@github.com/osctune/oscar-util.git"
   },
   "bugs": {
     "url": "https://github.com/osctune/oscar-app/issues"
