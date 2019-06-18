@@ -49,6 +49,16 @@ describe('reducer (createUrl)', () => {
         expect(stash).toStrictEqual([createUrlResultAction]);
     });
 
+    it('should keep only latest item with unique url in stash', () => {
+        const createUrlAction = createUrl({ url: `http://localhost:8080/`, });
+        let state = reducer(undefined, createUrlAction);
+        state = reducer(state, createUrlOk(createUrlAction));
+        state = reducer(state, createUrlAction);
+        state = reducer(state, createUrlOk(createUrlAction));
+        const stash = getStash(state);
+        expect(stash.length).toBe(1);
+    });
+
     it('should make sure stash size do not go over 10 items', () => {
         let state;
         for(let i = 0; i < 11; i++) {

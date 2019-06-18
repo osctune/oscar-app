@@ -35,7 +35,7 @@ const reducer = (state = initialState(), action) => {
         case ACTION_CREATE_URL_OK:
             return {
                 ...state,
-                stash: [action, ...state.stash].slice(0, 10),
+                stash: [action, ...state.stash.filter(o => o.url !== action.url)].slice(0, 10),
                 history: [action, ...state.history],
                 pending: removeById(state.pending, action),
             };
