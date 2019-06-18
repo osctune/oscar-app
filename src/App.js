@@ -37,27 +37,48 @@ const Url = ({
     };
 
     return (
-        <div>
-            <div>
-                Pending
-                {pending.map(action => {
+        <div className="layout">
+            <div className="title">
+                <h1>OSCAR</h1>
+                <h2>Open Source Concurrent Address Reducer</h2>
+            </div>
+            <div className="control">
+                <form onSubmit={handleCreateUrl}>
+                    <input type="text" value={url} onChange={handleChangeUrl} />
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
+            <div className="stash">
+                <h3>Stash</h3>
+                {history.filter(action => action.type === ACTION_CREATE_URL_OK).map(action => {
                     return (
-                        <div key={action.id}>
-                            {action.url}
+                        <div className="card" key={action.id}>
+                            <span>{action.id}</span>
+                            <a href={action.url}>{action.url}</a>
+                            <pre>
+                                {JSON.stringify(action, null, 4)}
+                            </pre>
                         </div>
                     );
                 })}
             </div>
-            <form onSubmit={handleCreateUrl}>
-                <input type="text" value={url} onChange={handleChangeUrl} />
-                <input type="submit" value="Submit" />
-            </form>
-            <div>
-                History
-                {history.filter(action => action.type === ACTION_CREATE_URL_OK).map(action => {
+            <div className="error">
+                <h3>Error</h3>
+                {history.filter(action => action.type !== ACTION_CREATE_URL_OK).slice(0, 1).map(action => {
                     return (
                         <div key={action.id}>
-                            <a href={action.url}>{action.url}</a>
+                            <div>{action.url}</div>
+                            <div>{action.reason}</div>
+                        </div>
+                    );
+                })}
+            </div>
+            <div className="progress">
+                <h3>Progress</h3>
+                {pending.map(action => {
+                    return (
+                        <div key={action.id}>
+                            {action.url}
                         </div>
                     );
                 })}
