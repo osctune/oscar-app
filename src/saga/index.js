@@ -17,7 +17,21 @@ import {
     createUrlTimeout,
 } from '../action';
 
+const findReasonHTTP = (response) => {
+    switch(response.status) {
+        case 400:
+            return 'Invalid URL';
+        case 404:
+            return 'Couldn not find the route to the server.';
+        default:
+            return `HTTP error: ${response.status}`;
+    }
+};
+
 function* createUrl(action) {
+    // Delay for a second (to show off progress card).
+    yield delay(1000);
+
     try {
         // Make request.
         const { response, timeout } = yield race({
@@ -44,13 +58,15 @@ function* createUrl(action) {
         } else {
             yield put(createUrlFail({
                 ...action,
-                reason: text,
+                reason: findReasonHTTP(response),
             }));
         }
     } catch (err) {
         // Error.
-        console.log(err);
-        yield put(createUrlFail(action));
+        yield put(createUrlFail({
+            ...action,
+            reason: 'Unknown',
+        }));
     } finally {
         if (yield cancelled()) {
             // Canceled.
