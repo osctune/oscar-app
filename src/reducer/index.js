@@ -19,7 +19,6 @@ export const initialState = (persistedState = {}) => ({
 });
 
 const reducer = (state = initialState(), action) => {
-    console.log(state, action)
     switch(action.type) {
         // Store user input.
         case ACTION_INPUT_URL:
