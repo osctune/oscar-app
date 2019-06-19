@@ -29,12 +29,14 @@ ReactDOM.render(
     document.getElementById('root'),
 );
 
-// Enable hot reloading for App.js
-module.hot.accept('./component/App.js', () => {
-    ReactDOM.render(
-        <ReduxProvider store={store}>
-            <App />
-        </ReduxProvider>,
-        document.getElementById('root'),
-    );
-});
+if(module.hot) {
+    // Enable hot reloading for App.js
+    module.hot.accept('./component/App.js', () => {
+        ReactDOM.render(
+            <ReduxProvider store={store}>
+                <App />
+            </ReduxProvider>,
+            document.getElementById('root'),
+        );
+    });
+}
