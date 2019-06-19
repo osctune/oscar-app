@@ -21,7 +21,7 @@ const LastError = ({
                 const reason = action.type === ACTION_CREATE_URL_TIMEOUT ? 'Timeout' : action.reason;
                 return (
                     <div className="card" key={action.id}>
-                        <a>{`${action.url} - ${reason}`}</a>
+                        <a>{`${reason} - ${action.url}`}</a>
                     </div>
                 );
             })}
