@@ -10,14 +10,16 @@ import {
 import { removeById } from '../util';
 
 // App initial state.
-const initialState = () => ({
+export const initialState = (persistedState = {}) => ({
     url: '',
     pending: [],
     stash: [],
     history: [],
+    ...persistedState,
 });
 
 const reducer = (state = initialState(), action) => {
+    console.log(state, action)
     switch(action.type) {
         // Store user input.
         case ACTION_INPUT_URL:

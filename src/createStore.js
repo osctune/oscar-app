@@ -3,21 +3,24 @@ import createSagaMiddleware from 'redux-saga';
 
 import { loadState, saveState } from './localStore';
 
-import reducer from './reducer';
+import reducer, { initialState } from './reducer';
+import { getPersistedState } from './selector';
 import saga from './saga';
 
 const initialize = () => {
     const sagaMiddleware = createSagaMiddleware();
 
+    const persistedState = loadState();
+
     // Create redux store.
     const store = createStore(
         reducer,
-        loadState(),                    // Load previous state.
+        initialState(getPersistedState(persistedState)),   // Load previous state.
         applyMiddleware(sagaMiddleware) // Apply saga middleware.
     );
     
-    // Enable hot reloading for reducer.
     if (module.hot) {
+        // Enable hot reloading for reducer.
         module.hot.accept('./reducer', () => {
             store.replaceReducer(reducer);
         });
@@ -34,7 +37,7 @@ const initialize = () => {
             clearTimeout(timeout);
         }
         timeout = setTimeout(() => {
-            saveState(state);
+            saveState(getPersistedState(state));
             timeout = null;
         }, 1000);
     });
