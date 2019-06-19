@@ -57,8 +57,7 @@ const App = ({
                     {lastError.map(action => {
                         return (
                             <div className="card" key={action.id}>
-                                <div>{action.url}</div>
-                                <div>{action.reason}</div>
+                                <a>{`${action.url} - ${action.reason}`}</a>
                             </div>
                         );
                     })}
@@ -68,7 +67,7 @@ const App = ({
                     {pending.map(action => {
                         return (
                             <div className="card" key={action.id}>
-                                {action.url}
+                                <a target="_blank" href={action.url}>{action.url}</a>
                             </div>
                         );
                     })}
