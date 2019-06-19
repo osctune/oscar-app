@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import {
     ACTION_CREATE_URL_OK,
+    ACTION_CREATE_URL_TIMEOUT,
 } from '../constant';
 
 import { getHistory } from '../selector';
@@ -17,9 +18,10 @@ const LastError = ({
         <div className="error">
             <h3>Last error</h3>
             {lastError.map(action => {
+                const reason = action.type === ACTION_CREATE_URL_TIMEOUT ? 'Timeout' : action.reason;
                 return (
                     <div className="card" key={action.id}>
-                        <a>{`${action.url} - ${action.reason}`}</a>
+                        <a>{`${action.url} - ${reason}`}</a>
                     </div>
                 );
             })}
