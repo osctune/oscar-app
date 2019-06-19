@@ -7,7 +7,7 @@ import {
     ACTION_CREATE_URL_FAIL,
     ACTION_CREATE_URL_CANCEL,
     ACTION_CREATE_URL_TIMEOUT,
-} from './constant';
+} from '../constant';
 
 // Update user url input.
 export const inputUrl = (url) => ({

@@ -15,7 +15,7 @@ module.exports = Object.assign(baseConfig, {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'OSCAR - development',
-            template: 'src/ejs/index.dev.ejs',
+            template: 'template/html/index.dev.ejs',
             API_URL: process.env.API_URL,
             REDIRECT_URL: process.env.REDIRECT_URL,
         }),

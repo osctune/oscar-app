@@ -3,7 +3,7 @@ import {
     saveState,
     loadState,
     clearState,
-} from './localStore';
+} from '../localStore';
 
 beforeEach(() => {
     Storage.prototype.setItem = jest.fn();

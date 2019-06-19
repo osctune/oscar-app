@@ -11,7 +11,7 @@ module.exports = merge(common, {
         ]),
         new HtmlWebpackPlugin({
             title: 'OSCAR',
-            template: 'src/ejs/index.prod.ejs',
+            template: 'template/html/index.prod.ejs',
             API_URL: process.env.API_URL,
             REDIRECT_URL: process.env.REDIRECT_URL,
         }),

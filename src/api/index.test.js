@@ -1,4 +1,4 @@
-import { createUrl } from './api';
+import { createUrl } from '.';
 
 beforeAll(() => {
     global.API_URL = 'API_URL';

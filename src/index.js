@@ -1,4 +1,4 @@
-import './style/index.scss';
+import '../template/css/index.scss';
 
 // npm WARN deprecated @babel/polyfill@7.4.4: 🚨 As of Babel 7.4.0, this
 // npm WARN deprecated package has been deprecated in favor of directly
@@ -17,7 +17,7 @@ import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 
 import createStore from './createStore';
-import App from './App';
+import App from './component/App';
 
 // Bootstrap app.
 const store = createStore();
@@ -30,7 +30,7 @@ ReactDOM.render(
 );
 
 // Enable hot reloading for App.js
-module.hot.accept('./App.js', () => {
+module.hot.accept('./component/App.js', () => {
     ReactDOM.render(
         <ReduxProvider store={store}>
             <App />

@@ -5,9 +5,9 @@ import {
     ACTION_CREATE_URL_FAIL,
     ACTION_CREATE_URL_CANCEL,
     ACTION_CREATE_URL_TIMEOUT,
-} from './constant';
+} from '../constant';
 
-import { removeById } from './util';
+import { removeById } from '../util';
 
 // App initial state.
 const initialState = () => ({

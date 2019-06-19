@@ -1,4 +1,4 @@
-import { removeById } from './util';
+import { removeById } from '.';
 
 describe('removeById', () => {
     it('should return a new list without items with the same id as the item provided', () => {

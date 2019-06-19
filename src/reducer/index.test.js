@@ -1,4 +1,4 @@
-import reducer from './reducer';
+import reducer from '.';
 
 import {
     inputUrl,
@@ -7,14 +7,14 @@ import {
     createUrlCancel,
     createUrlFail,
     createUrlTimeout,
-} from './action';
+} from '../action';
 
 import {
     getInputUrl,
     getPending,
     getHistory,
     getStash,
-} from './selector';
+} from '../selector';
 
 describe('reducer (inputUrl)', () => {
     it('should default to empty string', () => {
