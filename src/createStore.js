@@ -10,12 +10,13 @@ import saga from './saga';
 const initialize = () => {
     const sagaMiddleware = createSagaMiddleware();
 
-    const persistedState = loadState();
+    // Get persisted state.
+    const persistedState = getPersistedState(loadState() || initialState());
 
     // Create redux store.
     const store = createStore(
         reducer,
-        initialState(getPersistedState(persistedState)),   // Load previous state.
+        initialState(persistedState),   // Load previous state.
         applyMiddleware(sagaMiddleware) // Apply saga middleware.
     );
     
